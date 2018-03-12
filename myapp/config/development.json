@@ -1,0 +1,27 @@
+{
+    "app": {
+      "port": 3000
+    },
+    "db": {
+      "dialect": "",
+      "host": "",
+      "port": 1000,
+      "dialect": "",
+      "database": "",
+      "username": "",
+      "password": ""
+    },
+    "key_service": {
+      "host": "",
+      "port": 1000,
+      "key_namespace": "auth:",
+      "key_separator": ":",
+      "expires_seconds": 6000
+    },
+    "jwt": {
+      "secret": "placeholder-secretKey",
+      "algorithm": "HS256",
+      "secret_separator": ":"
+    }
+  }
+  
