@@ -24,7 +24,6 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-
 var io = require('socket.io')(server);
 
 var game1 = io.of('/game1'); // Define Your Custom Namespace.
