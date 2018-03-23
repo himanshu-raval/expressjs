@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-sm-3">
+		<div class="thumbnail">
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="/multiplayer/mszones">Zones</a></li>
+				<li class="active"><a href="/multiplayer/mszones/create">Create Zone</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-sm-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">Multiplayer Zone create</div>
+			<div class="panel-body">
+				<form class="form-horizontal" action="/multiplayer/mszones" method="POST">
+
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="name">Name:</label>
+						<div class="col-sm-10"> 
+							<input type="text" name="name" class="form-control" id="name" placeholder="Enter Name">
+						</div>
+					</div>
+					<div class="form-group"> 
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label><input type="checkbox" name="status"> Active</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group"> 
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-info">Create</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>	

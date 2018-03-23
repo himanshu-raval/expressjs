@@ -1,0 +1,128 @@
+<app-page-header [heading]="'Avatars'" [icon]="'fa-table'"></app-page-header>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Avatar</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form role="form" name="form" (ngSubmit)="f.form.valid && submit()" #f="ngForm" novalidate>
+        <div class="modal-body">
+            <div class="form-content">
+
+ 
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !avatar.valid }">
+                    <label for="avatar">Avatar </label>
+                     <!-- image Show in Edit-->
+                    <br/>
+                    <img *ngIf="editIndex != null"  style="width: 50px;" src="{{url}}/Assets/upload/{{model.avatar}}" />
+                    <!-- end -->
+                    <input type="file" class="form-control"  ng2FileSelect [uploader]="uploader" name="avatar" [(ngModel)]="model.avatar" #avatar="ngModel" id="avatar"   />
+            
+                </div>
+
+                
+ 
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !avatar_name.valid }">
+                    <label for="avatar_name">Avatar Name </label>
+                    <input type="text" name="avatar_name" [(ngModel)]="model.avatar_name" #avatar_name="ngModel" required class="form-control input-underline input-lg" id="avatar_name" >
+                    <div *ngIf="f.submitted && !avatar_name.valid" class="help-block">Avatar Name is required</div>
+                </div>
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !gems.valid }">
+                    <label for="gems">Gems</label>
+                    <input type="text" name="gems" [(ngModel)]="model.gems" #gems="ngModel" required class="form-control input-underline input-lg" id="gems" >
+                    <div *ngIf="f.submitted && !gems.valid" class="help-block">Gems is required</div>
+                </div>                
+        
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !chance.valid }">
+                    <label for="chance">Chance</label>
+                    <input type="text" name="chance" [(ngModel)]="model.chance" #chance="ngModel" required class="form-control input-underline input-lg" id="chance" >
+                    <div *ngIf="f.submitted && !chance.valid" class="help-block">Chance is required</div>
+                </div> 
+
+
+            </div>
+        </div>
+       <div class="modal-footer">
+            <button *ngIf="editIndex == null" [disabled]="loading" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+            <button *ngIf="editIndex != null" [disabled]="loading" class="btn btn-success"><i class="fa fa-save"></i> Update</button>
+            <button type="button" class="btn btn-secondary btn-danger" (click)="c('Close click')">Cancel</button>
+        </div>
+    </form>
+</ng-template>
+
+
+<div class="row">
+    <div class="col col-xl-12 col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">
+            <button class="btn btn-primary pull-right" (click)="open(content)"><i class="fa fa-plus"></i> Add Avatar</button>
+            Avatar List
+            </div>
+            <div class="card-block table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Avatar</th>
+                            <th>Name of Avatar</th>
+                            <th>Gems</th>
+                            <th>Chance(%)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of pagedItems; let i = index ">
+                            <td>{{i+1}}</td>
+                            <td><img style="width: 50px;" src="{{url}}/Assets/upload/{{item.avatar}}" /></td>
+                            <td>{{item.avatar_name}}</td>
+                            <td>${{item.gems}}</td>
+                            <td>{{item.chance}}%</td>
+                            <td>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-info btn-secondary" (click)="editAvatar(i, content)"><i class="fa fa-edit"></i></button>
+                                 <button type="button" class="btn btn-danger btn-secondary" (click)="deleteAvatar(i)"><i class="fa fa-trash"></i></button>
+                                  
+                            </div>
+                          </td>
+                      </tr>
+
+                  </tbody>
+              </table>
+              <!-- pager -->
+              <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
+                <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a class="page-link" (click)="setPage(1)" aria-label="First">
+                     <span aria-hidden="true">&laquo;&laquo;</span>
+                     <span class="sr-only">First</span>
+                 </a>
+             </li>
+             <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(pager.currentPage - 1)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.currentPage + 1)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            <li class="page-link" class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.totalPages)" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                    <span class="sr-only">Last</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+</div>

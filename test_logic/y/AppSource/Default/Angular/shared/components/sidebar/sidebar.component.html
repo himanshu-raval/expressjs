@@ -1,0 +1,101 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <ul class="list-group">
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'dashboard' | translate }}
+        </a>
+        <a routerLink="/player" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-users"></i>&nbsp;{{ 'player' | translate }}
+        </a>
+
+        <!-- AisRts -->
+
+        <!-- <div class="nested-menu">
+            <a class="list-group-item" routerLink="/aisrts" [routerLinkActive]="['router-link-active']" (click)="addExpandClass('pages-rts')">
+                <span><i class="fa fa-play"></i>&nbsp;{{ 'AisRts' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages-rts'">
+                <ul class="submenu">
+                    <li><a routerLink="/aisrts/zone" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-industry"></i>&nbsp;{{ 'zone' | translate }} {{ 'master' | translate }}</span></a></li>
+                    <li><a routerLink="/aisrts/room" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-home"></i>&nbsp;{{ 'room' | translate }} {{ 'master' | translate }}</span></a></li>
+                    <li><a routerLink="/aisrts/player" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-play"></i>&nbsp;{{ 'player' | translate }} {{ 'master' | translate }}</span></a></li>
+                     
+                </ul>
+            </li>
+        </div> -->
+
+        <!-- End - AisRts -->
+
+
+        <div class="nested-menu">
+            <a class="list-group-item" routerLink="/shop" [routerLinkActive]="['router-link-active']" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-shopping-bag"></i>&nbsp;{{ 'shop' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li><a routerLink="/shop/avatar" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-user-circle-o"></i>&nbsp;{{ 'avatar' | translate }} {{ 'master' | translate }}</span></a></li>
+                    <li><a routerLink="/shop/card" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-address-card-o"></i>&nbsp;{{ 'card' | translate }} {{ 'master' | translate }}</span></a></li>
+                    <li><a routerLink="/shop/chest" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-archive"></i>&nbsp;{{ 'chest' | translate }} {{ 'master' | translate }}</span></a></li>
+                    <li><a routerLink="/shop/coin" [routerLinkActive]="['router-link-active']" ><span><i class="fa fa-money"></i>&nbsp;{{ 'coin' | translate }} {{ 'master' | translate }}</span></a></li>
+                    <li><a routerLink="/shop/gems" [routerLinkActive]="['router-link-active']" ><span><i class="fa fa-diamond"></i>&nbsp;{{ 'gems' | translate }} {{ 'master' | translate }}</span></a></li>
+                    <li><a routerLink="/shop/landmark" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-globe"></i>&nbsp;{{ 'landmark' | translate }} {{ 'master' | translate }}</span></a></li>
+                    <li><a routerLink="/shop/sound" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-globe"></i>&nbsp;{{ 'sound' | translate }} {{ 'master' | translate }}</span></a></li>
+                </ul>
+            </li>
+        </div>
+
+        <!-- <a routerLink="/help" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-question-circle"></i>&nbsp;{{ 'help' | translate }} {{ 'master' | translate }}
+        </a> -->
+        <a routerLink="/wheel" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-circle-o-notch"></i>&nbsp;{{ 'wheel' | translate }}
+        </a>
+        <a routerLink="/achievement" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-trophy"></i>&nbsp;{{ 'achievement' | translate }}
+        </a>
+        <a routerLink="/tournament" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-trophy"></i>&nbsp;{{ 'Tournament' | translate }}
+        </a>
+        <!-- <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'charts' | translate }}
+        </a>
+        <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'tables' | translate }}
+        </a>
+        <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'forms' | translate }}
+        </a>
+        <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'boostrapElement' | translate }}
+        </a>
+        <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-wrench"></i>&nbsp;{{ 'boostrapGrid' | translate }}
+        </a>
+        <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-th-list"></i>&nbsp;{{ 'component' | translate }}
+        </a>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-plus"></i>&nbsp;{{ 'menu' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><span>{{ 'submenu' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-file-o"></i>&nbsp;{{ 'blankpage' | translate }}
+        </a>
+        <a class="list-group-item more-themes" href="http://www.strapui.com/" >
+            {{ 'moretheme' | translate }}
+        </a> -->
+    </ul>
+</nav>

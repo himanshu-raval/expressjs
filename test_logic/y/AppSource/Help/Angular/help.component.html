@@ -1,0 +1,29 @@
+<app-page-header [heading]="'Helps'" [icon]="'fa-table'"></app-page-header>
+<div class="row">
+  <div class="col col-xl-12 col-lg-12">
+    <div class="card mb-3">
+      <div class="card-header">
+        <button class="btn btn-primary pull-right" (click)="updateHelp()">
+          <i class="fa fa-save"></i> Update
+        </button>
+        Help Content
+      </div>
+      <div class="card-block table-responsive">
+      <ckeditor
+      [(ngModel)]="help.text"
+      [config]="{uiColor: '#AADC6E'}"
+      debounce="500">
+    </ckeditor>
+           <!-- <ckeditor
+               [(ngModel)]="ckeditorContent"
+               [config]="{uiColor: '#AADC6E'}"
+               (change)="onChange($event)"
+               (ready)="onReady($event)"
+               (focus)="onFocus($event)"
+               (blur)="onBlur($event)"
+               debounce="500">
+             </ckeditor> -->
+           </div>
+         </div>
+       </div>
+     </div>

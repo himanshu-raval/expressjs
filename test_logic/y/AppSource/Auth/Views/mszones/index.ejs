@@ -1,0 +1,43 @@
+<div class="row">
+	<div class="col-sm-3">
+		<div class="thumbnail">
+			<ul class="nav nav-pills nav-stacked">
+				<li class="active"><a href="/multiplayer/mszones">Zones</a></li>
+				<li><a href="/multiplayer/mszones/create">Create Zone</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-sm-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">Multiplayer Zones</div>
+			<div class="panel-body table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Status</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for(var i=0; i < zones.length; i++) { %>
+							<tr <%if (zones[i].status=='Active') {%> class="success" <% } %> >
+								<td><%= zones[i].id %></td>
+								<td><%= zones[i].name %></td>
+								<td><%if (zones[i].status=='Active') {%>  Active <%} else { %> Deactive <% } %></td>
+								<td>
+									<div class="btn-group">
+										<a href="/multiplayer/mszones/edit/<%= zones[i].id %>" class="btn btn-sm btn-primary">Edit</a>
+										<a href="/multiplayer/mszones/delete/<%= zones[i].id %>" class="btn btn-sm btn-danger">Delete</a>
+									</div>
+								</td>
+							</tr>
+							<% } %>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>	

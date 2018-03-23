@@ -1,0 +1,136 @@
+<app-page-header [heading]="'Wheels of Fortune'" [icon]="'fa-table'"></app-page-header>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form role="form" name="form" (ngSubmit)="f.form.valid && submit()" #f="ngForm" novalidate>
+        <div class="modal-body">
+            <div class="form-content">
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !type.valid }">
+                    <label for="type">Type</label>
+                    <select name="type" [(ngModel)]="model.type" #type="ngModel" required class="form-control input-underline input-lg" id="type" > 
+                        <option *ngFor="let obj of types" [value]="obj.value">{{obj.name}}</option>
+                    </select>
+                    <div *ngIf="f.submitted && !type.valid" class="help-block">Type is required</div>
+                </div>
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" [(ngModel)]="model.title" #title="ngModel" required class="form-control input-underline input-lg" id="title" >
+                    <div *ngIf="f.submitted && !title.valid" class="help-block">Title is required</div>
+                </div>
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !value.valid }">
+                    <label for="value">Value</label>
+                    <input type="text" name="value" [(ngModel)]="model.value" #value="ngModel" required class="form-control input-underline input-lg" id="value" >
+                    <div *ngIf="f.submitted && !value.valid" class="help-block">Value is required</div>
+                </div>
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !percent.valid }">
+                    <label for="percent">Percent</label>
+                    <input type="text" name="percent" [(ngModel)]="model.percent" #percent="ngModel" required class="form-control input-underline input-lg" id="percent" >
+                    <div *ngIf="f.submitted && !percent.valid" class="help-block">Percent is required</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="editIndex == null" [disabled]="loading" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+            <button *ngIf="editIndex != null" [disabled]="loading" class="btn btn-success"><i class="fa fa-save"></i> Update</button>
+            <button type="button" class="btn btn-secondary btn-danger" (click)="c('Close click')">Cancel</button>
+        </div>
+    </form>
+</ng-template>
+<div class="row">
+    <div class="col col-xl-12 col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <!-- <button class="btn btn-primary pull-right" (click)="open(content)"><i class="fa fa-plus"></i> Add Slice</button> -->
+                All Wheel Slice List
+            </div>
+            <div class="card-block table-responsive">
+
+                <div class="row">
+                    <div class="col col-xl-12 col-lg-12">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                Free Wheel Slice
+                            </div>
+                            <div class="card-block table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Value</th>
+                                            <th>Percent %</th>
+                                             
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let item of allItems; let i = index;">
+                                            <tr *ngIf="item.type == 'free'">
+                                                <td>{{item.title}}</td>
+                                                <td>{{item.value | number}}</td>
+                                                <td>{{item.percent}}</td>
+                                                
+                                                <td>
+                                                    <div class="btn-group btn-group-sm" role="group">
+                                                        <button type="button" class="btn btn-info btn-secondary" (click)="editSlice(i, content)"><i class="fa fa-edit"></i></button>
+                                                        <!-- <button type="button" class="btn btn-danger btn-secondary" (click)="deleteSlice(i)"><i class="fa fa-trash"></i></button> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-xl-12 col-lg-12">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                Paid Wheel Slice
+                            </div>
+                            <div class="card-block table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Value</th>
+                                            <th>Percent %</th>
+                                           
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let item of allItems; let i = index;">
+                                            <tr *ngIf="item.type == 'paid'">
+                                                <td>{{item.title}}</td>
+                                                <td>{{item.value | number}}</td>
+                                                <td>{{item.percent}}</td>
+                                                
+                                                <td>
+                                                    <div class="btn-group btn-group-sm" role="group">
+                                                        <button type="button" class="btn btn-info btn-secondary" (click)="editSlice(i, content)"><i class="fa fa-edit"></i></button>
+                                                        <!-- <button type="button" class="btn btn-danger btn-secondary" (click)="deleteSlice(i)"><i class="fa fa-trash"></i></button> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
